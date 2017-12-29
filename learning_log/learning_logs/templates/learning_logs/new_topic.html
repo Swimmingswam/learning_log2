@@ -1,0 +1,22 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Add a new topic:</h2>
+{% endblock header %}
+
+{% block content %}
+    
+  <form action="{% url 'learning_logs:new_topic' %}" method='post'
+      class="form">   <!--action告诉服务器，将提交的表单发送至哪里，将其返回去new_topic()-->
+      
+    {% csrf_token %}  <!--防止攻击者利用表单获得对服务器未经授权的访问-->
+    {% bootstrap_form form %}  <!--显示表单，让Django自动创建显示表单所需的所有字段-->
+    
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">add topic</button>
+    {% endbuttons %}
+    
+  </form>
+    
+{% endblock content %}
